@@ -27,9 +27,9 @@ def mark_link_processed(link):
 
 def process_email_and_submit_form():
     # Email credentials and IMAP server
-    username = "moritz.lauper@hispeed.ch"
-    password = "PASSWORD"  # Replace with your actual password
-    imap_url = "imap.hispeed.ch"
+    username = "youremail@address.com"
+    password = "PASSWORD"  
+    imap_url = "imap.mailprovider.com"
 
     # Connect to the IMAP server and select the inbox
     mail = imaplib.IMAP4_SSL(imap_url)
