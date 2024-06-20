@@ -1,5 +1,3 @@
-### README.md
-
 # Flatfox Auto Apply
 
 This script automatically applies to apartment listings on Flatfox by processing emails from Flatfox subscription notifications, extracting the listing URL, and submitting a pre-filled form with your details.
@@ -20,39 +18,31 @@ This script automatically applies to apartment listings on Flatfox by processing
     cd flatfox_auto_apply
     ```
 
-2. **Update Email Credentials**:
-    Open `flatfox_auto_apply.py` and update the following variables with your email credentials and IMAP server details:
+2. **Update User-specific Information**:
+    Open `flatfox_auto_apply.py` and update the following variables at the top of the file:
     ```python
-    # Email credentials and IMAP server
-    username = "youremail@address.com"
-    password = "PASSWORD"
-    imap_url = "imap.mailprovider.com"
+    # User-specific information
+    FLATFOX_EMAIL = "youremail@address.com"
+    EMAIL_PASSWORD = "PASSWORD"  
+    IMAP_URL = "imap.mailprovider.com"
+    FLATFOX_PASSWORD = "FLATFOX_PASSWORD"
+    PHONE_NUMBER = "0786756543"
+    FULL_NAME = "Your name"
     ```
 
-3. **Update Flatfox Login Details**:
-    In the same file, update the Flatfox login details:
-    ```python
-    # Replace these with your actual Flatfox login details
-    driver.find_element(By.ID, "id_name").send_keys("Your Name")
-    driver.find_element(By.ID, "id_email").send_keys("youremail@address.com")
-    driver.find_element(By.ID, "id_phone_number").send_keys("Your Phone Number")
-    email_input.send_keys("youremail@address.com")  # Your Flatfox email
-    password_field.send_keys("PASSWORD")  # Your Flatfox password
-    ```
-
-4. **Install Dependencies**:
+3. **Install Dependencies**:
     Install the required Python packages using `pip`:
     ```sh
     pip install -r requirements.txt
     ```
 
-5. **Run the Script**:
+4. **Run the Script**:
     Execute the script using Python:
     ```sh
     python3 flatfox_auto_apply.py
     ```
 
-6. **Automate** (Optional):
+5. **Automate** (Optional):
     Automate the script using Google Cloud or another cloud service if desired.
 
 ## Troubleshooting
@@ -68,29 +58,3 @@ This script automatically applies to apartment listings on Flatfox by processing
 ## Contributing
 
 Feel free to open issues or submit pull requests with improvements and fixes.
-
-## License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-```
-
-### Summary of the Script
-
-- **Email Processing**:
-  - Connects to the IMAP server using provided credentials.
-  - Searches for emails from "Flatfox subscription".
-  - Extracts the listing URL from the latest email.
-
-- **Form Submission**:
-  - Uses Selenium to open the listing URL.
-  - Fills in the form fields with your name, email, and phone number.
-  - Unchecks the 'Notify me of similar listings' checkbox if checked.
-  - Attempts to click the 'Apply now' button using different XPaths.
-  - Logs in to your Flatfox account if required.
-  - Extracts the verification code from the email if two-factor authentication is needed.
-  - Submits the application form.
-
-- **Loop**:
-  - The script runs in an infinite loop, checking for new emails and applying to listings every minute.
-
-This `README.md` should provide clear instructions on setting up and running the script, as well as the necessary points to update with personal credentials and details.
