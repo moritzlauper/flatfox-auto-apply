@@ -12,6 +12,14 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.chrome.service import Service
 
+# User-specific information
+FLATFOX_EMAIL = "youremail@address.com"
+EMAIL_PASSWORD = "PASSWORD"  
+IMAP_URL = "imap.mailprovider.com"
+FLATFOX_PASSWORD = "FLATFOX_PASSWORD"
+PHONE_NUMBER = "0123456789"
+FULL_NAME = "Your Name"
+
 def is_link_processed(link):
     if os.path.exists("processed_links.txt"):
         with open("processed_links.txt", "r") as file:
@@ -26,14 +34,9 @@ def mark_link_processed(link):
         file.write(link + "\n")
 
 def process_email_and_submit_form():
-    # Email credentials and IMAP server
-    username = "youremail@address.com"
-    password = "PASSWORD"  
-    imap_url = "imap.mailprovider.com"
-
     # Connect to the IMAP server and select the inbox
-    mail = imaplib.IMAP4_SSL(imap_url)
-    mail.login(username, password)
+    mail = imaplib.IMAP4_SSL(IMAP_URL)
+    mail.login(FLATFOX_EMAIL, EMAIL_PASSWORD)
     mail.select("inbox")
 
     # Search for the specific email
@@ -77,9 +80,9 @@ def process_email_and_submit_form():
 
         time.sleep(2)
         # Fill in the form fields
-        driver.find_element(By.ID, "id_name").send_keys("Moritz Lauper")
-        driver.find_element(By.ID, "id_email").send_keys("youremail@address.com")
-        driver.find_element(By.ID, "id_phone_number").send_keys("0786756543")
+        driver.find_element(By.ID, "id_name").send_keys(FULL_NAME)
+        driver.find_element(By.ID, "id_email").send_keys(FLATFOX_EMAIL)
+        driver.find_element(By.ID, "id_phone_number").send_keys(PHONE_NUMBER)
 
         # Check or uncheck the 'Notify me of similar listings' checkbox
         checkbox = driver.find_element(By.ID, "id_create_subscription")
@@ -121,7 +124,7 @@ def process_email_and_submit_form():
 
         # Fill in the email address
         email_input.clear()  # Clear any pre-filled value
-        email_input.send_keys("youremail@address.com")  # Replace with the actual email
+        email_input.send_keys(FLATFOX_EMAIL)  # Replace with the actual email
 
         # Locate and click the submit button
         submit_button = driver.find_element(By.CSS_SELECTOR, "button[aria-label='Next']")
@@ -133,7 +136,7 @@ def process_email_and_submit_form():
         )
 
         # Fill in the password
-        password_field.send_keys("PASSWORD")  # Replace with your password
+        password_field.send_keys(FLATFOX_PASSWORD)  # Replace with your password
 
         # Locate and click the Log In button
         log_in_button = driver.find_element(By.CSS_SELECTOR, "button[aria-label='Log in']")
@@ -142,8 +145,8 @@ def process_email_and_submit_form():
         time.sleep(10)
 
         # Connect to the IMAP server and select the inbox
-        mail = imaplib.IMAP4_SSL(imap_url)
-        mail.login(username, password)
+        mail = imaplib.IMAP4_SSL(IMAP_URL)
+        mail.login(FLATFOX_EMAIL, EMAIL_PASSWORD)
         mail.select("inbox")
 
         # Search for the specific email with the subject "Your Flatfox account: Access from a new device"
