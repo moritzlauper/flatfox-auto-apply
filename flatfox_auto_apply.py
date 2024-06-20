@@ -78,7 +78,7 @@ def process_email_and_submit_form():
         time.sleep(2)
         # Fill in the form fields
         driver.find_element(By.ID, "id_name").send_keys("Moritz Lauper")
-        driver.find_element(By.ID, "id_email").send_keys("moritz.lauper@hispeed.ch")
+        driver.find_element(By.ID, "id_email").send_keys("youremail@address.com")
         driver.find_element(By.ID, "id_phone_number").send_keys("0786756543")
 
         # Check or uncheck the 'Notify me of similar listings' checkbox
@@ -121,7 +121,7 @@ def process_email_and_submit_form():
 
         # Fill in the email address
         email_input.clear()  # Clear any pre-filled value
-        email_input.send_keys("moritz.lauper@hispeed.ch")  # Replace with the actual email
+        email_input.send_keys("youremail@address.com")  # Replace with the actual email
 
         # Locate and click the submit button
         submit_button = driver.find_element(By.CSS_SELECTOR, "button[aria-label='Next']")
@@ -133,7 +133,7 @@ def process_email_and_submit_form():
         )
 
         # Fill in the password
-        password_field.send_keys("Flatfox_2024")  # Replace with your password
+        password_field.send_keys("PASSWORD")  # Replace with your password
 
         # Locate and click the Log In button
         log_in_button = driver.find_element(By.CSS_SELECTOR, "button[aria-label='Log in']")
